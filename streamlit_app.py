@@ -10,6 +10,36 @@ st.set_page_config(
     menu_items=None
 )
 
+st.markdown("""
+    <style>
+        .reportview-container {
+            margin-top: -2em;
+        }
+        #MainMenu {visibility: hidden;}
+        .stDeployButton {display:none;}
+        footer {visibility: hidden;}
+        #stDecoration {display:none;}
+    </style>
+""", unsafe_allow_html=True)
+import base64
+
+def main_bg(main_bg):
+    main_bg_ext = "png"
+    st.markdown(
+        f"""
+         <style>
+         .stApp {{
+             background: url(data:image/{main_bg_ext};base64,{base64.b64encode(open(main_bg, "rb").read()).decode()});
+             background-size: cover
+         }}
+         </style>
+         """,
+        unsafe_allow_html=True
+    )
+ 
+#调用
+main_bg('a.jpg')
+
 # 定义与中心节点相关的元素
 elements = {
     "地点选择": ["经典浪漫", "日常特别", "冒险刺激"],
