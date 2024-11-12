@@ -20,13 +20,14 @@ elements = {
 }
 
 # 创建节点和链接
-nodes = [{"name": "Love", "symbolSize": 50, "category": 0}]
+nodes = []
 links = []
-categories = [{"name": "Love"}]
+categories = []
 
-import streamlit as st
-st.markdown("<h1 style='text-align: center; color: pink;'>爱是清醒的沉沦</h1>", unsafe_allow_html=True)
-st.markdown('点击选中你想要的元素')
+st.markdown("<h1 style='text-align: center; color: pink;'>What's on the menu?</h1>", unsafe_allow_html=True)
+
+
+
 # 添加元素到节点和链接
 category_index = 1
 for category, items in elements.items():
@@ -41,10 +42,10 @@ for category, items in elements.items():
 
 # 定义图表选项
 option = {
-    "backgroundColor": '#f0f2f5',  # 设置背景色
+    "backgroundColor": 'rgba(0, 0, 0, 0)',  # 设置背景色为透明
 
     "tooltip": {},
-    "legend": [{"data": [cat["name"] for cat in categories]}],
+    "legend": [{"data": [cat["name"] for cat in categories if cat["name"] not in elements.keys()]}],  # 只保留最底层的标签
     "series": [
         {
             "name": "Love Framework",
@@ -63,3 +64,4 @@ option = {
 
 # 在Streamlit中显示图表
 st_echarts(option, height="400px")
+st.markdown("<h4 style='text-align: center; color: pink;'>保留你想要的的元素，点击菜单可去除其他元素</h4>", unsafe_allow_html=True)
